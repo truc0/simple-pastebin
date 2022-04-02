@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Detail | Pastebin{% endblock %}
+
+{% block body %}
+    <h1 class="text-6xl">Snippet #{{ snippet.id }}</h1>
+    <span class="block mt-3">Written in {{ snippet.language }}</span>
+    <pre class="bg-gray-300 rounded border mt-3 px-2 py-2">{{ snippet.code }}</pre>
+{% endblock %}

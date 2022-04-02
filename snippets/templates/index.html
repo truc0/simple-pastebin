@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Index | Pastebin{% endblock %}
+
+{% block body %}
+<main class="container w-10/12 mx-auto pt-6 md:pt-12 lg:pt-24">
+    <ul class="flex flex-col items-center">
+        {% for s in snippets %}
+        <li class="relative w-full px-6 py-6 my-2
+                    flex justify-between
+                    overflow-hidden
+                    border rounded-sm">
+            <span class="z-10">
+                Language: {{ s.language }}
+            </span>
+            <div class="actions">
+                <a href="#">Visit➡</a>
+            </div>
+            <span 
+                class="absolute text-gray-300 text-8xl
+                        overflow-hidden opacity-40
+                        top-8 left-10 select-none
+                        rotate-12 -translate-y-12 -translate-x-12"
+            >#{{ s.id }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</main>
+{% endblock %}
