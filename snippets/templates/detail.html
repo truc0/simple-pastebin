@@ -2,14 +2,30 @@
 
 {% block title %}Detail | Pastebin{% endblock %}
 
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/themes/all-hallows-eve.min.css" integrity="sha512-peJY+/qQiuxmZYt63iP3OSc0SGKcb0ADq6hPCLaQp6ATigGzn+4f/hYEEaa4d1PhGWYxW+3dDzEdmTM6ouUmwQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
 {% block body %}
 <main class="flex flex-col 
             pt-6 md:pt-12 lg:pt-24
             container w-10/12 mx-auto">
     <section class="title-info text-left">
         <h1 class="text-4xl font-semibold">Snippet #{{ snippet.id }}</h1>
-        <span class="block mt-1">Written in {{ snippet.language }}</span>
+        <p class="block mt-1">Written in <span class="">{{ snippet.language }}</span></p>
     </section>
-    <pre class="bg-gray-300 rounded-sm border mt-3 px-2 py-2">{{ snippet.code }}</pre>
+    <pre
+        class="bg-gray-300 rounded-sm border mt-3 px-2 py-2 flex overflow-auto"
+    >
+    <code
+        class="block w-full"
+        data-language="{{ snippet.language }}"
+    >{{ snippet.code }}</code>
+    </pre>
 </main>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/rainbow.min.js" integrity="sha512-1iwOtzgGTn5KiNhyTHdGh8IpixXZnsD0vRXUqNUgWqET4Uv3vDXuHq55cGjdJ+qNBL/HxH815N7qvLxgzA1dYw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% endblock %}
