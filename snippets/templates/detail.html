@@ -3,7 +3,13 @@
 {% block title %}Detail | Pastebin{% endblock %}
 
 {% block body %}
-    <h1 class="text-6xl">Snippet #{{ snippet.id }}</h1>
-    <span class="block mt-3">Written in {{ snippet.language }}</span>
-    <pre class="bg-gray-300 rounded border mt-3 px-2 py-2">{{ snippet.code }}</pre>
+<main class="flex flex-col 
+            pt-6 md:pt-12 lg:pt-24
+            container w-10/12 mx-auto">
+    <section class="title-info text-left">
+        <h1 class="text-4xl font-semibold">Snippet #{{ snippet.id }}</h1>
+        <span class="block mt-1">Written in {{ snippet.language }}</span>
+    </section>
+    <pre class="bg-gray-300 rounded-sm border mt-3 px-2 py-2">{{ snippet.code }}</pre>
+</main>
 {% endblock %}
