@@ -1,12 +1,24 @@
-from django.http import HttpResponse
+from django.views.generic import View
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Snippet
 from .forms import SnippetForm
 
-# Create your views here.
-def index(request):
-    if request.method == 'POST':
+
+class IndexView(View):
+    # TemplateView
+    # GenericView
+    # ListView
+    # DetailView
+
+    def get(self, request, *args, **kwargs):
+        snippets = Snippet.objects.all()
+        # serialized = {s.id: { 'code': s.code, 'language': s.language } for s in snippets}
+        # return JsonResponse(serialized)
+        return render(request, 'index.html', context={ 'snippets': snippets })
+
+    def post(self, request, *args, **kwargs):
         language = request.POST['language']
         code = request.POST.get('code')
         form = SnippetForm(request.POST)
@@ -19,9 +31,6 @@ def index(request):
             return redirect('snippets:detail', pk=snippet.id)
         else:
             return HttpResponse('Code cannot be empty and language cannot be empty')
-    else:
-        snippets = Snippet.objects.all()
-        return render(request, 'index.html', context={ 'snippets': snippets })
 
 
 def detail(request, pk):
