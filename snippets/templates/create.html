@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<main class="container w-10/12 mx-auto pt-6 md:pt-12 lg:pt-24">
+    <form 
+        action="{% url 'snippets:index' %}"
+        method="POST"
+        class="flex flex-col border rounded px-4 py-4"
+    >
+        {% csrf_token %}
+        <div class="mb-2">
+            <label 
+                for="language"
+                class="font-mono font-bold"
+            >Language</label>
+            <input 
+                id="language" type="text" name="language" 
+                class="rounded-sm border border-black-500 block w-full"
+            />
+        </div>
+
+        <div class="mb-2">
+            <label 
+                for="code"
+                class="font-mono font-bold"
+            >Code</label>
+            <textarea 
+                id="code" name="code"
+                class="rounded-sm border border-black-500 block w-full"
+            ></textarea>
+        </div>
+
+        <button 
+            class="mt-2 rounded-sm border border-cyan-600 py-2 font-bold text-cyan-600
+                    hover:text-white hover:bg-cyan-600 transition-all"
+        >Submit</button>
+    </form>
+</main>
+{% endblock %}
