@@ -14,7 +14,7 @@
                 Language: {{ s.language }}
             </span>
             <div class="actions">
-                <a href="#">Visit➡</a>
+                <a href="{% url 'snippets:detail' s.id %}">Visit➡</a>
             </div>
             <span 
                 class="absolute text-gray-300 text-8xl
